@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <bean id="win7" class="com.jay.aop.pojodemo.Win7"/>
+    <bean id="computer" class="com.jay.aop.pojodemo.Computer">
+        <constructor-arg ref="win7"></constructor-arg>
+    </bean>
+    <bean id="aopExecution" class="com.jay.aop.pojodemo.AopExecution"></bean>
+
+    <aop:config>
+        <aop:aspect ref="aopExecution"><!--将该类配置成一个切面-->
+            <!--切点（pointcut） 去定义何处使用通知 expression(公式使用了aspectj的表达式) -->
+            <aop:pointcut id="computerPoint" expression="execution(void com.jay.aop.pojodemo.Computer.work(..))"/>
+            <!--连接点 真正去调用的点(Joint) 何时调用的方法-->
+            <aop:before method="beforeAop" pointcut-ref="computerPoint"/>
+            <aop:after method="afterAop"   pointcut-ref="computerPoint"/>
+
+            <aop:pointcut id="processPoint" expression="execution(void com.jay.aop.pojodemo.Computer.progress(..))"/>
+            <aop:around method="AroundAop" pointcut-ref="processPoint"/>
+
+        </aop:aspect>
+    </aop:config>
+
+</beans>
