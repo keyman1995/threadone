@@ -15,7 +15,7 @@ public class User {
 
     public synchronized void  changAge(){
         this.age = 31;
-        notifyAll();
+        notify();
     }
 
     public synchronized void changeCity(){

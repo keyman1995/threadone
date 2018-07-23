@@ -22,6 +22,7 @@ public class InterruptTest {
 
         public void cancle(){
             on=false;
+            System.out.println("I will cancle the Thread.....");
 
         }
 

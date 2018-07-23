@@ -12,15 +12,14 @@ public class HaveInterrupt {
 
         @Override
         public void run() {
-            while (on && !Thread.currentThread().isInterrupted()){
+            while (on){
                 try {
                     i++;
-                    System.out.println("i的值"+i+Thread.currentThread().isInterrupted());
+                    System.out.println("i的终端表示位："+i+Thread.currentThread().isInterrupted());
                     synchronized (this){
                         wait();
                         //抛出终端异常的异常方法，抛出异常后 中断标识为会改成false
                         //可以理解为这些方法会隐含调用Thread.interrupterd()方法；
-
                     }
 
                 } catch (InterruptedException e) {
@@ -36,8 +35,8 @@ public class HaveInterrupt {
         }
 
         public void cancle(){
-            //on =false;
-            interrupt();
+            on =false;
+            //interrupt();
         }
     }
 
@@ -73,16 +72,16 @@ public class HaveInterrupt {
 
 
     public static void main(String[] args) throws InterruptedException {
- /*       WhileTry whileTry = new WhileTry();
+        WhileTry whileTry = new WhileTry();
         whileTry.start();
         Thread.sleep(3000);
-        whileTry.cancle();*/
+        whileTry.cancle();
 
 
-        TryWhile tryWhile = new TryWhile();
+     /*   TryWhile tryWhile = new TryWhile();
         tryWhile.start();
         Thread.sleep(3000);
-        tryWhile.cancle();
+        tryWhile.cancle();*/
 
     }
 

@@ -23,16 +23,15 @@ public class LockDemo {
 
     public static void main(String[] args) {
 
-/*      for(int i=0;i<100;i++){
+      for(int i=0;i<100;i++){
             Thread thread = new ReadThread(new ReadWriteDemo(),countDownLatch);
             thread.start();
         }
         for(int i=0;i<200;i++){
             Thread thread = new WriteThread(new ReadWriteDemo(),countDownLatch);
             thread.start();
-        }*/
-/*
-        for(int i=0;i<100;i++){
+        }
+      /*  for(int i=0;i<100;i++){
             Thread thread = new ReadThread(new ReadWriteSyn(),countDownLatch);
             thread.start();
         }
@@ -40,14 +39,14 @@ public class LockDemo {
             Thread thread = new WriteThread(new ReadWriteDemo(),countDownLatch);
             thread.start();
         }*/
-      /*  countDownLatch.countDown();*/
+        countDownLatch.countDown();
 
         //ReentranceLock的实现，
-        for(int i=0;i<10;i++){
+    /*    for(int i=0;i<10;i++){
             Thread thread = new ThreadLocker();
             thread.start();
         }
-        ThreadLocker.startUp();
+        ThreadLocker.startUp();*/
     }
     //ReadAndWriteLock 的实现
 
